@@ -19,6 +19,7 @@ class CreateCityHallsTable extends Migration
             $table->string('city_hall_cod',);
             $table->string('phone',);
             $table->integer('population');
+            $table->foreignId('city_id')->constrained();
             $table->timestamps();
         });
     }

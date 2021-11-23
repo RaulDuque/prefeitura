@@ -18,6 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->date('term');
             $table->string('contact_type',2);
+            $table->foreignId('city_hall_id') ->constrained();
             $table->timestamps();
         });
     }

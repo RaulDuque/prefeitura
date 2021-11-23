@@ -19,10 +19,11 @@ class CreateActivitiesTable extends Migration
             $table->string('name');
             $table->date('time');
             $table->string('reciprocity',2);
-            $table->text('description',250);
-            $table->text('pendencies', 250);
+            $table->text('description');
+            $table->text('pendencies');
             $table->string('status',2);
             $table->string('activitycod');
+            $table->foreignId('contacts_id')->constrained();
             $table->timestamps();
         });
     }
