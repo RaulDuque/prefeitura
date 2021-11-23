@@ -15,6 +15,10 @@ class CreateCityHallsTable extends Migration
     {
         Schema::create('city_halls', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('city_hall_cod',);
+            $table->string('phone',);
+            $table->integer('population');
             $table->timestamps();
         });
     }
