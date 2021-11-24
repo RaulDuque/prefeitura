@@ -16,14 +16,14 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type',2);
             $table->date('time');
             $table->string('reciprocity',2);
             $table->text('description');
             $table->text('pendencies');
             $table->string('status',2);
             $table->string('activity_cod');
-            $table->foreignId('contaphpcts_id')->constrained();
+            $table->foreignId('contact_id') ->constrained();
             $table->timestamps();
         });
     }

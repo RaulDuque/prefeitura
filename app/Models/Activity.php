@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'type',
+        'time',
+        'reciprocity',
+        'description',
+        'pendencies',
+        'status',
+        'activity_cod',
+        'contact_id'
+    ];
+
 }

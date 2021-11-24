@@ -4,6 +4,6 @@
     </x-slot>
 
     <div class="p-4 bg-white rounded-lg shadow-xs">
-        {{ __('You are logged in!') }}
+        {{ __('Voce fez login !') }}
     </div>
 </x-app-layout>
