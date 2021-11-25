@@ -16,7 +16,6 @@ class Activity extends Model
         'description',
         'pendencies',
         'status',
-        'activity_cod',
         'contact_id'
     ];
     public function contact(): BelongsTo
