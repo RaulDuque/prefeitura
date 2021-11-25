@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model
 {
@@ -14,4 +16,12 @@ class Contact extends Model
         'contact_type',
         'city_hall_id'
     ];
+    public function cityHall(): BelongsTo
+    {
+        return $this->belongsTo(CityHall::class);
+    }
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
 }
