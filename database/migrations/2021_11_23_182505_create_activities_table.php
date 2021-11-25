@@ -22,7 +22,7 @@ class CreateActivitiesTable extends Migration
             $table->text('description');
             $table->text('pendencies');
             $table->string('status',2);
-            $table->foreignId('contact_id') ->constrained();
+            $table->foreignId('contact_id')->constrained() ->onDelete('restrict');
             $table->timestamps();
         });
     }

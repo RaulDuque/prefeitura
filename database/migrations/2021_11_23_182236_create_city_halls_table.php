@@ -16,10 +16,9 @@ class CreateCityHallsTable extends Migration
         Schema::create('city_halls', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('city_hall_cod',);
-            $table->string('phone',11);
-            $table->integer('population');
-            $table->foreignId('city_id')->constrained();
+            $table->string('phone',11)->nullable();
+            $table->integer('population')->nullable();
+            $table->foreignId('city_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
     }
