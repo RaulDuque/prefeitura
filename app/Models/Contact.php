@@ -13,7 +13,7 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'term',
-        'contact_type',
+        'contact_type_id',
         'city_hall_id'
     ];
     public function cityHall(): BelongsTo

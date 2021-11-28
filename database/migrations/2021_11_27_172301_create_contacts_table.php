@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CityHall;
+use App\Models\ContactType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,9 +18,9 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('term');
-            $table->string('contact_type',2);
-            $table->foreignId('city_hall_id') ->constrained() ->onDelete('cascade');
+            $table->date('term')->nullable();
+            $table->foreignIdFor(CityHall::class) ->constrained() ->onDelete('cascade');
+            $table->foreignIdFor(ContactType::class) ->constrained() ->onDelete('restrict');
             $table->timestamps();
         });
     }
