@@ -18,7 +18,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
-    //Route::view('about', 'about')->name('about');
+    Route::view('about', 'about')->name('about');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
 
