@@ -17,7 +17,7 @@ class CreateCityHallsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone',11)->nullable();
-            $table->unsignedIntege('population')->nullable();
+            $table->unsignedInteger('population')->nullable();
             $table->foreignId('city_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
