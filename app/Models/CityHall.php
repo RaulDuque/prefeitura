@@ -14,7 +14,7 @@ class CityHall extends Model
         'name',
         'phone',
         'population',
-        'city_id'
+        'city_id',
     ];
     public function city(): BelongsTo
     {
