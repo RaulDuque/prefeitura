@@ -23,6 +23,18 @@ class Activity extends Model
     protected $casts = [
         'time' => 'datetime'
     ];
+
+
+    public function activityType(): BelongsTo
+    {
+        return $this->belongsTo(ActivityType::class);
+    }
+
+    public function receptivity(): BelongsTo
+    {
+        return $this->belongsTo(Receptivity::class);
+    }
+
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

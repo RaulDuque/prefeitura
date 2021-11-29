@@ -16,10 +16,16 @@ class Contact extends Model
         'contact_type_id',
         'city_hall_id'
     ];
+    public function contactType(): BelongsTo
+    {
+        return $this->belongsTo(ContactType::class);
+    }
+
     public function cityHall(): BelongsTo
     {
         return $this->belongsTo(CityHall::class);
     }
+
     public function activities(): HasMany
     {
         return $this->hasMany(Activity::class);

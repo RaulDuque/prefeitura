@@ -12,7 +12,6 @@ class CityHall extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'state',
         'phone',
         'population',
         'city_id'

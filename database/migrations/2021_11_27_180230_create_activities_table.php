@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ActivityType;
+use App\Models\Contact;
 use App\Models\Receptivity;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,6 +24,7 @@ class CreateActivitiesTable extends Migration
             $table->string('status',2)->nullable();
             $table->foreignIdFor(ActivityType::class) ->constrained() ->onDelete('restrict');
             $table->foreignIdFor(Receptivity::class) ->constrained() ->onDelete('restrict');
+            $table->foreignIdFor(Contact::class) ->constrained() ->onDelete('restrict');
             $table->timestamps();
         });
     }
