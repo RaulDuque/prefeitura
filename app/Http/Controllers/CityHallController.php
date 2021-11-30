@@ -18,6 +18,7 @@ class CityHallController extends Controller
             ->paginate();
 
         return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
+        // return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
     }
 
 
@@ -45,10 +46,10 @@ class CityHallController extends Controller
     public function show(CityHall $cityHall)
     {
         $cityHall->load(['contacts'=> fn ($query) =>$query
-        ->select('id', 'name', 'term', 'city_hall_id', 'contact_type_id')
-        ->with('contactType:id,name')
-        ->withCount('activities')
-        ->latest()]);
+            ->select('id', 'name', 'term', 'city_hall_id', 'contact_type_id')
+            ->with('contactType:id,name')
+            ->withCount('activities')
+            ->latest()]);
         $cities = City::orderBy('name')->get('id', 'name');
         return view('city-halls.show', ['cityHall' => $cityHall]);
     }
@@ -63,6 +64,6 @@ class CityHallController extends Controller
 
     public function destroy(CityHall $cityHall)
     {
-        return redirect()->route('city-halls.index')->with('success', '<b>$cityHall->name</b> excluída.');
+        return redirect()->route('city-hallls.index')->with('success', '<b>$cityHall->name</b> excluída.');
     }
 }
