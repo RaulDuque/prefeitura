@@ -17,4 +17,5 @@
         Se não vendeu, mas também deixou alguma esperança, deve deixar um status que indica a insistência em algum tempo.
         ') }}
     </div>
+    <a href="https://icons8.com/icon/YkkkrbhLBiXM/add">Add icon by Icons8</a>
 </x-app-layout>
