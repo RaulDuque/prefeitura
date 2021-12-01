@@ -20,7 +20,7 @@ class CityHall extends Model
     {
         return $this->belongsTo(City::class);
     }
-    public function contact(): HasMany
+    public function contacts(): HasMany
     {
         return $this->hasMany(Contact::class);
     }

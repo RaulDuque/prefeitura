@@ -51,7 +51,7 @@ class CityHallController extends Controller
             ->withCount('activities')
             ->latest()]);
         $cities = City::orderBy('name')->get('id', 'name');
-        return view('city-halls.show', ['cityHall' => $cityHall]);
+        return view('city-halls.show', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
 
 
@@ -64,6 +64,6 @@ class CityHallController extends Controller
 
     public function destroy(CityHall $cityHall)
     {
-        return redirect()->route('city-hallls.index')->with('success', '<b>$cityHall->name</b> excluída.');
+        return redirect()->route('city-halls.index')->with('success', '<b>$cityHall->name</b> excluída.');
     }
 }
