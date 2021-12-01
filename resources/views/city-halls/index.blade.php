@@ -1,10 +1,9 @@
-    <x-app-layout>
-        <x-slot name="header">
+<x-app-layout>
+    <x-slot name="header">
             {{ __('Prefeituras') }}
-        </x-slot>
-        <div class="section">
-
-            <div class="overflow-hidden mb-8 w-full rounded-lg border shadow-xs">
+    </x-slot>
+    <div class="section">
+        <div class="overflow-hidden mb-8 w-full rounded-lg border shadow-xs">
                 <div class="overflow-x-auto w-full">
                     <table class="w-full whitespace-no-wrap">
                         <thead>
@@ -17,7 +16,6 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y">
-
                             @foreach ($cityHalls as $cityHall)
                                 <tr class="text-black-700">
                                     <td class="px-4 py-3 text-sm">
@@ -32,7 +30,7 @@
                                         {{  $cityHall->population }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        <a href="{{ route('city-halls.show', $cityHall) }}" class="text-blue-500 underline">
+                                        <a href="{{ route('city-halls.edit', $cityHall) }}" class="text-blue-500 underline">
                                             <i class="mdi mdi-svg:"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                 width="30" height="25"
                                                 viewBox="0 0 226 226"
@@ -45,9 +43,8 @@
                         </tbody>
                     </table>
                 </div>
-
-        </div>
- @include('sweetalert::alert')
-
-    </x-app-layout>
+            </div>
+    </div>
+    @include('sweetalert::alert')
+</x-app-layout>
 
