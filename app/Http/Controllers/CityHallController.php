@@ -66,7 +66,7 @@ class CityHallController extends Controller
             'population' => 'required|integer',
         ]);
         $cityHall->update($validatedData);
-        return redirect()->route('city-halls.show', $cityHall)->with('success', '<b>$cityHall->name</b> atualizada.');
+        return redirect()->route('city-halls.index', $cityHall)->with('success', '<b>$cityHall->name</b> atualizada.');
     }
 
 
