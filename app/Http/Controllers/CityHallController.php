@@ -53,11 +53,19 @@ class CityHallController extends Controller
         $cities = City::orderBy('name')->get('id', 'name');
         return view('city-halls.show', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
-
+    public function edit(CityHall $cityHall)
+    {
+        return view('city-halls.edit', ['cityHall' => $cityHall]);
+    }
 
     public function update(Request $request, CityHall $cityHall)
     {
-        $cityHall->update($request->validate());
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required|max:11',
+            'population' => 'required|integer',
+        ]);
+        $cityHall->update($validatedData);
         return redirect()->route('city-halls.show', $cityHall)->with('success', '<b>$cityHall->name</b> atualizada.');
     }
 
