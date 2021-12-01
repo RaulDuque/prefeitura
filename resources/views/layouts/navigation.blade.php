@@ -32,16 +32,15 @@
                 </x-nav-link>
             </li>
 
-                {{-- <x-nav-link href="{{ route('city-halls.show', $cityHall->id) }}" :active="request()->routeIs('city-halls.show')"> --}}
-
-            {{-- <li class="relative px-6 py-3">
-                <x-nav-link href="{{ route('city-halls.show') }}" :active="request()->routeIs('city-halls.show')">
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('cities.index') }}" :active="request()->routeIs('cities.index')">
                     <x-slot name="icon">
-                        <img src="https://img.icons8.com/nolan/50/add.png" width="35" height="35"/>
+                        <img src="https://img.icons8.com/nolan/50/city-buildings.png" width="35" height="35"/>
+
                     </x-slot>
-                    {{ __('Adicionar Prefeitura') }}
+                    {{ __('Cidades') }}
                 </x-nav-link>
-            </li> --}}
+            </li>
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
