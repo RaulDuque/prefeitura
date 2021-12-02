@@ -29,7 +29,7 @@ class CityController extends Controller
             'state' => 'required|max:255',
         ]);
         $city = City::create($validatedData);
-        return redirect('/cities');
+        return redirect()->route('cities.index',$city);
     }
 
     public function show(City $city)
@@ -42,10 +42,18 @@ class CityController extends Controller
         $city = City::findOrFail($id);
         return view('cities.edit', ['city' => $city]);
     }
-    public function update(Request $request, $id)
+
+    public function update(Request $request, City $city)
     {
-        return redirect()->route(  'cities.show', ['city' => $id]);  }
-    public function destroy($id)
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'state' => 'required|max:255',
+        ]);
+        $city->update($validatedData);
+        return redirect()->route('cities.index', $city)->with('success', '<b>$cities->name</b> atualizada.');
+    }
+
+        public function destroy($id)
     {
         $city = City::find($id);
         $city->delete();

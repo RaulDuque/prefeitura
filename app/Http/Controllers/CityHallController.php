@@ -18,13 +18,12 @@ class CityHallController extends Controller
             ->paginate();
 
         return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
-        // return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
     }
 
 
     public function create()
     {
-        $cities = City::orderBy('name')->get('id', 'name');
+        $cities = City::orderBy('name')->get([ 'id', 'name' ]);
         return view('city-halls.create', ['cities' => $cities]);
 
     }
@@ -32,14 +31,14 @@ class CityHallController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'phone' => 'required|max:11',
-            'population' => 'required|integer',
-            'city_id' => 'required|integer',
-        ]);
-        $cityHall = CityHall::create($validatedData);
-        return redirect()->route('city-halls.index');
+        $cityHall = CityHall::query()
+            ->select('id', 'name', 'phone', 'population', 'city_id')
+            ->with('city:id,name')
+            ->latest()
+            ->paginate();
+
+        // return redirect()->route('city-halls.index');
+        return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
     }
 
 
