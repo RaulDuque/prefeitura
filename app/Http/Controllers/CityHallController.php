@@ -54,7 +54,8 @@ class CityHallController extends Controller
     }
     public function edit(CityHall $cityHall)
     {
-        return view('city-halls.edit', ['cityHall' => $cityHall]);
+        $cities = City::orderBy('name')->get([ 'id', 'name' ]);
+        return view('city-halls.edit', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
 
     public function update(Request $request, CityHall $cityHall)
