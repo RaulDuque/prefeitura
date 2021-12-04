@@ -12,14 +12,21 @@ class CityController extends Controller
 {
     public function index()
     {
-        $cities = City::all();
-
-        return view('cities.index', compact('cities'));
+        $cities = City::query()
+        ->select('id', 'name', 'state')
+        ->latest()
+        ->paginate();
+        return view('cities.index',['cities' => City::all()]);
     }
 
     public function create()
     {
-        return view('cities.create');
+        $cities = City::orderBy('name')->get([
+            'id',
+            'name',
+            'state'
+        ]);
+        return view('cities.create', ['cities' => $cities]);
     }
 
     public function store(Request $request)
@@ -55,7 +62,8 @@ class CityController extends Controller
 
         public function destroy($id)
     {
-        $city = City::find($id);
+        $city = City::findOrFail($id);
         $city->delete();
+        return redirect()->route('cities.index')->with('success', '<b>$city->name</b> deletada.');
     }
 }

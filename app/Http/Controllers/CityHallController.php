@@ -13,7 +13,7 @@ class CityHallController extends Controller
     {
         $cityHalls = CityHall::query()
             ->select('id', 'name', 'phone', 'population', 'city_id')
-            ->with('city:id,name')
+            ->with('city:id,name,state')
             ->latest()
             ->paginate();
 
@@ -23,7 +23,7 @@ class CityHallController extends Controller
 
     public function create()
     {
-        $cities = City::orderBy('name')->get([ 'id', 'name' ]);
+        $cities = City::orderBy('name')->get([ 'id', 'name', 'state' ]);
         return view('city-halls.create', ['cities' => $cities]);
 
     }
@@ -33,7 +33,7 @@ class CityHallController extends Controller
     {
         $cityHall = CityHall::query()
             ->select('id', 'name', 'phone', 'population', 'city_id')
-            ->with('city:id,name')
+            ->with('city:id,name,state')
             ->latest()
             ->paginate();
 
