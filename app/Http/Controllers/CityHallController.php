@@ -14,7 +14,6 @@ class CityHallController extends Controller
         $cityHalls = CityHall::query()
             ->select('id', 'name', 'phone', 'population', 'city_id')
             ->with('city:id,name,state')
-            ->orderBy('name')
             ->latest()
             ->get();
 

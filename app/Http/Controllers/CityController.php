@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class CityController extends Controller
 {
@@ -15,6 +12,7 @@ class CityController extends Controller
         $cities = City::query()
         ->select('id', 'name', 'state')
         ->latest()
+        ->orderBy('name')
         ->paginate();
         return view('cities.index',['cities' => City::all()]);
     }
