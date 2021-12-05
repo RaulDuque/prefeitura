@@ -42,6 +42,7 @@
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
                                         @endforeach
                                     </select>
+                                </label>
                             </div>
                             </div>
                         <div class="text-right mt-6">

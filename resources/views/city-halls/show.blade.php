@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __("$cityHall->name") }}
+            {{ __("$cityHalls->name") }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -23,7 +23,7 @@
                         @endif
 
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                    <form action="{{ route('city-halls.update', $cityHall) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('city-halls.update', $cityHalls) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="grid grid-cols-6 gap-6">
