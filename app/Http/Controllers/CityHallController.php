@@ -14,10 +14,11 @@ class CityHallController extends Controller
         $cityHalls = CityHall::query()
             ->select('id', 'name', 'phone', 'population', 'city_id')
             ->with('city:id,name,state')
+            ->orderBy('name')
             ->latest()
-            ->paginate();
+            ->get();
 
-        return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
+        return view('city-halls.index', ['cityHalls' => $cityHalls]);
     }
 
 
@@ -31,14 +32,14 @@ class CityHallController extends Controller
 
     public function store(Request $request)
     {
-        $cityHall = CityHall::query()
-            ->select('id', 'name', 'phone', 'population', 'city_id')
-            ->with('city:id,name,state')
-            ->latest()
-            ->paginate();
+        $validatedData = request()->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'population' => 'required|max:255',
+            'city_id' => 'required',]);
+        $cityHalls = CityHall::create($validatedData);
+        return redirect()->route('city-halls.index',$cityHalls);
 
-        // return redirect()->route('city-halls.index');
-        return view('city-halls.index', ['cityHalls' => CityHall::all() ]);
     }
 
 
@@ -49,14 +50,17 @@ class CityHallController extends Controller
             ->with('contactType:id,name')
             ->withCount('activities')
             ->latest()]);
-        $cities = City::orderBy('name')->get('id', 'name');
+        $cities = City::orderBy('name')->get(['id', 'name']);
         return view('city-halls.show', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
+
+
     public function edit(CityHall $cityHall)
     {
         $cities = City::orderBy('name')->get([ 'id', 'name' ]);
         return view('city-halls.edit', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
+
 
     public function update(Request $request, CityHall $cityHall)
     {
@@ -64,6 +68,7 @@ class CityHallController extends Controller
             'name' => 'required|max:255',
             'phone' => 'required|max:11',
             'population' => 'required|integer',
+            'city_id' => 'required',
         ]);
         $cityHall->update($validatedData);
         return redirect()->route('city-halls.index', $cityHall)->with('success', '<b>$cityHall->name</b> atualizada.');
