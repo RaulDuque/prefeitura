@@ -14,6 +14,7 @@ class CityHallController extends Controller
         $cityHalls = CityHall::query()
             ->select('id', 'name', 'phone', 'population', 'city_id')
             ->with('city:id,name,state')
+            ->orderBy('name')
             ->latest()
             ->get();
 
@@ -29,14 +30,17 @@ class CityHallController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store( )
     {
         $validatedData = request()->validate([
             'name' => 'required|max:255',
             'phone' => 'required|max:255',
             'population' => 'required|max:255',
-            'city_id' => 'required',]);
+            'city_id' => 'required',
+        ]);
+
         $cityHalls = CityHall::create($validatedData);
+
         return redirect()->route('city-halls.index',$cityHalls);
 
     }
@@ -54,16 +58,16 @@ class CityHallController extends Controller
     }
 
 
-    public function edit(CityHall $cityHall)
+    public function edit()
     {
         $cities = City::orderBy('name')->get([ 'id', 'name' ]);
-        return view('city-halls.edit', ['cityHall' => $cityHall, 'cities' => $cities]);
+        return view('city-halls.edit', [ 'cities' => $cities]);
     }
 
 
-    public function update(Request $request, CityHall $cityHall)
+    public function update(CityHall $cityHall)
     {
-        $validatedData = $request->validate([
+        $validatedData = request()->validate([
             'name' => 'required|max:255',
             'phone' => 'required|max:11',
             'population' => 'required|integer',
@@ -74,7 +78,7 @@ class CityHallController extends Controller
     }
 
 
-    public function destroy(CityHall $cityHall)
+    public function destroy()
     {
         return redirect()->route('city-halls.index')->with('success', '<b>$cityHall->name</b> excluída.');
     }

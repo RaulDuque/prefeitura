@@ -14,7 +14,7 @@ class CityController extends Controller
         ->latest()
         ->orderBy('name')
         ->paginate();
-        return view('cities.index',['cities' => City::all()]);
+        return view('cities.index',['cities' => $cities]);
     }
 
     public function create()
