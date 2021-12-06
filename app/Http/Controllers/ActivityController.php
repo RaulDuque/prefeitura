@@ -19,17 +19,17 @@ class ActivityController extends Controller
         ->latest()
         ->get();
 
-        return view('activity.index', ['activities' => $activities]);
+        return view('activities.index', ['activities' => $activities]);
     }
 
 
     public function create()
     {
         $activityTypes = ActivityType::orderBy('name')->get(['id', 'name']);
-        $receptivity = Receptivity::orderBy('name')->get(['id', 'name']);
+        $receptivities = Receptivity::orderBy('name')->get(['id', 'name']);
         $contacts = Contact::orderBy('name')->get(['id', 'name']);
 
-        return view('activity.create', ['activityTypes' => $activityTypes, 'receptivity' => $receptivity, 'contacts' => $contacts]);
+        return view('activities.create', ['activityTypes' => $activityTypes, 'receptivities' => $receptivities, 'contacts' => $contacts]);
     }
 
 
@@ -47,33 +47,32 @@ class ActivityController extends Controller
 
         $activities = Activity::create($validatedData);
 
-        return redirect()->route('activity.index', $activities);
+        return redirect()->route('activities.index', $activities);
 
     }
 
 
-    public function show($id)
+    public function show(Activity $activity)
     {
-        $activity = load(['contact'=> fn ($query) =>$query
+        $activity->load(['contact'=> fn ($query) =>$query
         ->select('id', 'time', 'description', 'status', 'pendencies', 'receptivity_id', 'activity_type_id', 'contact_id',)
         ->with('contact:id,name', 'activityType:id,name', 'receptivity:id,name')
-        ->where('id', $id)
         ->orderBy('id')
-        ->first();
-
+        ->latest()
+        ]);
         $contacts = Contact::orderBy('name')->get(['id', 'name']);
 
-        return view('activity.show', ['activity' => $activity, 'contacts' => $contacts]);
+        return view('activities.show', ['activity' => $activity, 'contacts' => $contacts]);
     }
 
 
-    public function edit($id)
+    public function edit(Activity $activity)
     {
         $contacts = Contact::orderBy('name')->get(['id', 'name']);
         $activityTypes = ActivityType::orderBy('name')->get(['id', 'name']);
-        $receptivity = Receptivity::orderBy('name')->get(['id', 'name']);
+        $receptivities = Receptivity::orderBy('name')->get(['id', 'name']);
 
-        return view('activity.edit', ['activity' => Activity::findOrFail($id), 'contacts' => $contacts, 'activityTypes' => $activityTypes, 'receptivity' => $receptivity]);
+        return view('activities.edit', ['activity' => $activity, 'contacts' => $contacts, 'activityTypes' => $activityTypes, 'receptivities' => $receptivities]);
 
     }
 
@@ -92,13 +91,16 @@ class ActivityController extends Controller
 
         $activity->update($validatedData);
 
-        return redirect()->route('activity.index',['activity'=>$activity]);
+        return redirect()->route('activities.index',['activity'=>$activity]);
     }
 
 
 
     public function destroy($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        $activity->delete();
+
+        return redirect()->route('activities.index');
     }
 }
