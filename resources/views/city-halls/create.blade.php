@@ -22,16 +22,19 @@
                                 <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('Nome') }}
                                     <input id="name" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            </div>
+                                </label>
+                                </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('phone') }}
                                     <input id="phone" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
-                            </div>
+                                </label>
+                                </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="population" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('population') }}
                                 <input id="population" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="population" value="{{ old('population') }}" required autocomplete="population" autofocus>
+                            </label>
                             </div>
                             <div class="col-span-6">
                                 <label for="city_id" class="block text-sm font-medium leading-5 text-gray-700">

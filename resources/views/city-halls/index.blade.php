@@ -12,6 +12,7 @@
                                 <th class="px-4 py-3">Cidades</th>
                                 <th class="px-4 py-3">Telefones</th>
                                 <th class="px-4 py-3">Habitantes</th>
+                                <th class="px-4 py-3">Mandato</th>
                                 <th class="px"></th>
                             </tr>
                         </thead>
@@ -29,6 +30,9 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{  $cityHall->population }}
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        {{  $cityHall->term }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         <a href="{{ route('city-halls.edit', $cityHall) }}" class="text-blue-500 underline">
