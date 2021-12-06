@@ -20,12 +20,14 @@
                                 <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('Nome') }}
                                     <input id="name" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            </div>
+                                </label>
+                                </div>
                             <div class="col-span-6">
                                 <label for="state" class="block text-sm font-medium leading-5 text-gray-700">
                                     {{ __('Estado') }}
                                     <input type="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="state" value="{{ old('state') }}" required autocomplete="state_id" autofocus>
-                                </div>
+                                </label>
+                            </div>
                             </div>
                             <div class="text-right mt-6">
                                 <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-black-100 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out">

@@ -66,6 +66,22 @@
                 </x-nav-link>
             </li>
             <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('activities.index') }}" :active="request()->routeIs('activities.index')">
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/add-property.png" width="35" height="35"/>
+                    </x-slot>
+                    {{ __('Eventos') }}
+                </x-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('activities.create') }}" :active="request()->routeIs('activities.create')">
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/appointment-reminders.png" width="35" height="35"/>
+                    </x-slot>
+                    {{ __('Cadastro de Eventos') }}
+                </x-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                     <x-slot name="icon">
                         <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -76,7 +92,6 @@
                     {{ __('About us') }}
                 </x-nav-link>
             </li>
-
         </ul>
     </div>
 </aside>
