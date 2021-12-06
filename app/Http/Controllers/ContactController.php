@@ -41,7 +41,9 @@ class ContactController extends Controller
             'contact_type_id' => 'required',
             'city_hall_id' => 'required',
         ]);
+
         $contacts = Contact::create($validateData);
+
         return redirect()->route('contacts.index', $contacts);
     }
 
