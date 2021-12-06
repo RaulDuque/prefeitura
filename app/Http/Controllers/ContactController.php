@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\CityHall;
 use App\Models\Contact;
 use App\Models\ContactType;
@@ -44,17 +45,29 @@ class ContactController extends Controller
         return redirect()->route('contacts.index', $contacts);
     }
 
+
     public function show(Contact $contact)
     {
-        return view('contacts.show', ['contacts' => $contact]);
+        $contact->load(['cityHall'=> fn ($query) =>$query
+            ->select('cityHall:id,name,phone,city_id','contactType:id,name','cityHall.city:id,name')
+            ->with('cityHall:id,name,phone,city_id','contactType:id,name','cityHall.city:id,name')
+            ->orderBy('name')
+            ->latest()
+            ->get()]);
+
+        $cities = City::orderBy('name')->get('id', 'name');
+        return view('contacts.show', ['contact' => $contact, 'cities' => $cities]);
     }
+
 
     public function edit(Contact $contact)
     {
+        $cities = City::orderBy('name')->get(['id', 'name']);
         $contactTypes = ContactType::orderBy('name')->get(['id', 'name']);
         $cityHalls = CityHall::orderBy('name')->get(['id', 'name','phone']);
-        return view('contacts.edit', ['cityHalls' => $cityHalls ,'contactTypes' => $contactTypes, 'contact' => $contact]);
+        return view('contacts.edit', ['cityHalls' => $cityHalls ,'contactTypes' => $contactTypes, 'contact' => $contact, 'cities' => $cities]);
     }
+
 
     public function update(Contact $contact, Request $request)
     {
@@ -68,8 +81,10 @@ class ContactController extends Controller
 
         $contact->update($validateData);
 
-        return redirect()->route('contacts.index', $contact)-with('success', 'Contact updated successfully');
+        return redirect()->route('contacts.index', ['contact' => $contact]);
     }
+
+
     public function destroy($id)
     {
         $contact = Contact::findOrFail($id);
