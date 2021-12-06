@@ -55,7 +55,7 @@ class CityController extends Controller
             'state' => 'required|max:255',
         ]);
         $city->update($validatedData);
-        return redirect()->route('cities.index', $city)->with('success', '<b>$cities->name</b> atualizada.');
+        return redirect()->route('cities.index', $city);
     }
 
         public function destroy($id)

@@ -53,21 +53,22 @@ class CityHallController extends Controller
             ->with('contactType:id,name')
             ->withCount('activities')
             ->latest()]);
-        $cities = City::orderBy('name')->get(['id', 'name']);
+        $cities = City::orderBy('name')->get('id', 'name');
         return view('city-halls.show', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
 
 
-    public function edit()
+    public function edit(CityHall $cityHall)
     {
         $cities = City::orderBy('name')->get([ 'id', 'name' ]);
-        return view('city-halls.edit', [ 'cities' => $cities]);
+        return view('city-halls.edit', ['cityHall' => $cityHall, 'cities' => $cities]);
     }
 
 
-    public function update(CityHall $cityHall)
+
+    public function update(Request $request, CityHall $cityHall)
     {
-        $validatedData = request()->validate([
+        $validatedData = $request->validate([
             'name' => 'required|max:255',
             'phone' => 'required|max:11',
             'population' => 'required|integer',
@@ -78,7 +79,7 @@ class CityHallController extends Controller
     }
 
 
-    public function destroy()
+    public function destroy(CityHall $cityHall)
     {
         return redirect()->route('city-halls.index')->with('success', '<b>$cityHall->name</b> excluída.');
     }

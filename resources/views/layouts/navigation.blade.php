@@ -1,4 +1,4 @@
-<aside class="z-20 hidden w-64 overflow-y-auto bg-White md:block flex-shrink-0">
+<aside class="z-20 hidden w-64 overflow-y-auto bg-black md:block flex-shrink-0">
     <div class="py-4 text-blue-500">
         <a class="ml-6 text-lg font-bold text-blue" href="{{ route('dashboard') }}">
             Licence City
@@ -7,35 +7,62 @@
         <ul class="mt-6">
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/50/control-panel.png" width="35" height="35"/>
+                    </x-slot>
                     {{ __('Dashboard') }}
                 </x-nav-link>
             </li>
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('city-halls.index') }}" :active="request()->routeIs('city-halls.index')">
-
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/city-hall.png" alt="" width="35" height="35">
+                    </x-slot>
                     {{ __('Prefeituras') }}
                 </x-nav-link>
             </li>
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('city-halls.create') }}" :active="request()->routeIs('city-halls.create')">
-
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/50/add.png" width="35" height="35"/>
+                    </x-slot>
                     {{ __('Adicionar Prefeitura') }}
                 </x-nav-link>
             </li>
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('cities.index') }}" :active="request()->routeIs('cities.index')">
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/50/city-buildings.png" width="35" height="35"/>
 
+                    </x-slot>
                     {{ __('Cidades') }}
                 </x-nav-link>
             </li>
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('cities.create') }}" :active="request()->routeIs('cities.create')">
-
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/map.png" width="35" height="35"/>
+                    </x-slot>
                     {{ __('Adicionar Cidade') }}
+                </x-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('contacts.index') }}" :active="request()->routeIs('contacts.index')">
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/address-book.png" width="35" height="35"/>
+                    </x-slot>
+                    {{ __('Contatos') }}
+                </x-nav-link>
+            </li>
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('contacts.create') }}" :active="request()->routeIs('contacts.create')">
+                    <x-slot name="icon">
+                        <img src="https://img.icons8.com/nolan/64/phone-not-being-used.png" width="35" height="35"/>
+                    </x-slot>
+                    {{ __('Adicionar Contato') }}
                 </x-nav-link>
             </li>
             <li class="relative px-6 py-3">

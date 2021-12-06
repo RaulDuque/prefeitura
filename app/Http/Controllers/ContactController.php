@@ -40,35 +40,35 @@ class ContactController extends Controller
             'contact_type_id' => 'required',
             'city_hall_id' => 'required',
         ]);
-
         $contacts = Contact::create($validateData);
-
-        return redirect()->route('contacts.show', $contacts);
+        return redirect()->route('contacts.index', $contacts);
     }
 
-    public function show(Contact $contacts)
+    public function show(Contact $contact)
     {
-        return view('contacts.show', ['contacts' => $contacts]);
+        return view('contacts.show', ['contacts' => $contact]);
     }
 
-    public function edit()
+    public function edit(Contact $contact)
     {
+        $contactTypes = ContactType::orderBy('name')->get(['id', 'name']);
         $cityHalls = CityHall::orderBy('name')->get(['id', 'name','phone']);
-        return view('contacts.edit', ['cityHalls' => $cityHalls]);
+        return view('contacts.edit', ['cityHalls' => $cityHalls ,'contactTypes' => $contactTypes, 'contact' => $contact]);
     }
 
-    public function update(Contact $contacts)
+    public function update(Contact $contact, Request $request)
     {
-        $validateData = request()->validate([
+
+        $validateData = $request->validate([
             'name' => 'required|max:255',
             'term' => 'required|max:255',
             'contact_type_id' => 'required',
             'city_hall_id' => 'required',
         ]);
 
-        $contacts->update($validateData);
+        $contact->update($validateData);
 
-        return redirect()->route('contacts.index', $contacts)-with('success', 'Contact updated successfully');
+        return redirect()->route('contacts.index', $contact)-with('success', 'Contact updated successfully');
     }
     public function destroy($id)
     {

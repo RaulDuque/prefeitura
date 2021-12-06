@@ -32,7 +32,8 @@
                                         {{  $cityHall->population }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{  $cityHall->term }}
+                                        {{  date('d-m-Y', strtotime($cityHall->term) ) }}
+                                        {{-- // date('Y-m-d', strtotime($cityHall->term) --}}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         <a href="{{ route('city-halls.edit', $cityHall) }}" class="text-blue-500 underline">
