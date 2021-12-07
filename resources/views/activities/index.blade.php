@@ -8,6 +8,7 @@
                 <table class="w-full whitespace-no-wrap">
                         <thead>
                             <tr class="text-xs font-semibold tracking-wide text-left text-black-500 uppercase bg-blue-500 border-b">
+                                <th class="px-4 py-3">Prefeitura</th>
                                 <th class="px-4 py-3">Data</th>
                                 <th class="px-4 py-3">Description</th>
                                 <th class="px-4 py-3">Status</th>
@@ -20,6 +21,7 @@
                         <tbody class="bg-white divide-y">
                             @foreach ($activities as $activity)
                                 <tr class="text-xs">
+                                    <td class="px-4 py-3">{{ $activity->contact->cityHall->name}}</td>
                                     <td class="px-4 py-3">{{ $activity->time }}</td>
                                     <td class="px-4 py-3">{{ $activity->description }}</td>
                                     <td class="px-4 py-3">{{ $activity->status }}</td>

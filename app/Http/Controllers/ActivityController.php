@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\ActivityType;
+use App\Models\CityHall;
 use App\Models\Contact;
 use App\Models\Receptivity;
 use Illuminate\Http\Request;
@@ -14,11 +15,11 @@ class ActivityController extends Controller
     {
         $activities = Activity::query()
         ->select('id', 'time', 'description', 'status', 'pendencies', 'receptivity_id', 'activity_type_id', 'contact_id',)
-        ->with('contact:id,name', 'activityType:id,name', 'receptivity:id,name', 'contact.cityHall:id,name')
+        ->with('contact:id,name,city_hall_id', 'activityType:id,name', 'receptivity:id,name', 'contact.cityHall:id,name',)
         ->orderBy('id')
         ->latest()
         ->get();
-
+        // dd($activities);
         return view('activities.index', ['activities' => $activities]);
     }
 
@@ -55,8 +56,8 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         $activity->load(['contact'=> fn ($query) =>$query
-        ->select('id', 'time', 'description', 'status', 'pendencies', 'receptivity_id', 'activity_type_id', 'contact_id',)
-        ->with('contact:id,name', 'activityType:id,name', 'receptivity:id,name')
+        ->select('id', 'time', 'description', 'status', 'pendencies', 'receptivity_id', 'activity_type_id', 'contact_id', 'city_hall_id',)
+        ->with('contact:id,name', 'activityType:id,name', 'receptivity:id,name', 'contact.cityHall:id,name',)
         ->orderBy('id')
         ->latest()
         ]);
@@ -68,11 +69,12 @@ class ActivityController extends Controller
 
     public function edit(Activity $activity)
     {
+        $cityHalls = CityHall::orderBy('name')->get(['id', 'name']);
         $contacts = Contact::orderBy('name')->get(['id', 'name']);
         $activityTypes = ActivityType::orderBy('name')->get(['id', 'name']);
         $receptivities = Receptivity::orderBy('name')->get(['id', 'name']);
 
-        return view('activities.edit', ['activity' => $activity, 'contacts' => $contacts, 'activityTypes' => $activityTypes, 'receptivities' => $receptivities]);
+        return view('activities.edit', ['activity' => $activity, 'contacts' => $contacts, 'activityTypes' => $activityTypes, 'receptivities' => $receptivities, 'cityHalls' => $cityHalls]);
 
     }
 
