@@ -13,6 +13,7 @@
                             @endforeach
                         </ul>
                     @endif
+
                     <form action="{{ route('activities.store') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-6 gap-6">
