@@ -19,9 +19,9 @@
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="time" class="block text-sm font-medium leading-5 text-gray-700">
-                                    {{ __('Hora do evento') }}
-                                    <input id="datatime" type="datetime-local" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="datatime" required autocomplete="datatime" autofocus>
-                                </label>
+                                        {{ __('Hora do evento') }}
+                                        <input id="time" type="datetime-local" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="time" required autocomplete="time" autofocus>
+                                    </label>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="status" class="block text-sm font-medium leading-5 text-gray-700">
@@ -59,6 +59,16 @@
                                     <select id="activity_type_id" class="mt-1 form-select block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="activity_type_id" required autocomplete="activity_type_id" autofocus>
                                         @foreach($activityTypes as $activityType)
                                             <option value="{{ $activityType->id }}">{{ $activityType->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="col-span-6 ">
+                                <label for="contact_id" class="block text-sm font-medium leading-5 text-gray-700">
+                                    {{ __('Contato') }}
+                                    <select id="contact_id" class="mt-1 form-select block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" name="contact_id" required autocomplete="contact_id" autofocus>
+                                        @foreach($contacts as $contact)
+                                            <option value="{{ $contact->id }}">{{ $contact->name }}</option>
                                         @endforeach
                                     </select>
                                 </label>
